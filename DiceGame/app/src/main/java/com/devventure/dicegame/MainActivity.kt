@@ -3,7 +3,7 @@ package com.devventure.dicegame
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,15 +11,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dado01 = findViewById<TextView>(R.id.dado01)
-        val dado02 = findViewById<TextView>(R.id.dado02)
+        val listDices = listOf(R.drawable.dice_1, R.drawable.dice_2, R.drawable.dice_3,
+            R.drawable.dice_4, R.drawable.dice_5, R.drawable.dice_6)
+
+        val diceOne = findViewById<ImageView>(R.id.ivDiceOne)
+        val diceTwo = findViewById<ImageView>(R.id.ivDiceTwo)
         val button = findViewById<Button>(R.id.button)
 
         button.setOnClickListener {
-            dado01.text = gerarNumeroAleatorio().toString()
-            dado02.text = gerarNumeroAleatorio().toString()
+            diceOne.setImageResource(listDices.random())
+            diceTwo.setImageResource(listDices.random())
         }
     }
 
-    private fun gerarNumeroAleatorio() = (1..6).random()
+    private fun getRandomNumber() = (1..6).random()
 }

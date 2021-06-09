@@ -2,20 +2,22 @@ package com.devventure.dicegame
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.devventure.dicegame.databinding.ActivityMainBinding
+import android.widget.Button
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        binding.button.setOnClickListener {
-            binding.dado01.text = gerarNumeroAleatorio().toString()
-            binding.dado02.text = gerarNumeroAleatorio().toString()
+        val dado01 = findViewById<TextView>(R.id.dado01)
+        val dado02 = findViewById<TextView>(R.id.dado02)
+        val button = findViewById<Button>(R.id.button)
+
+        button.setOnClickListener {
+            dado01.text = gerarNumeroAleatorio().toString()
+            dado02.text = gerarNumeroAleatorio().toString()
         }
     }
 

@@ -7,9 +7,11 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.res.TypedArrayUtils.getString
+import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private const val TAG = "MeuCicloVida"
+
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,19 +22,35 @@ class MainActivity : AppCompatActivity() {
 
         val playerName = intent.getStringExtra("playerName")
 
-        val listDices = listOf(R.drawable.dice_1, R.drawable.dice_2, R.drawable.dice_3,
-            R.drawable.dice_4, R.drawable.dice_5, R.drawable.dice_6)
+        val listDices = listOf(
+            R.drawable.dice_1, R.drawable.dice_2, R.drawable.dice_3,
+            R.drawable.dice_4, R.drawable.dice_5, R.drawable.dice_6
+        )
 
         val diceOne = findViewById<ImageView>(R.id.ivDiceOne)
         val diceTwo = findViewById<ImageView>(R.id.ivDiceTwo)
         val button = findViewById<Button>(R.id.button)
         val tvHelloPlayer = findViewById<TextView>(R.id.textView)
+        val shareButton = findViewById<FloatingActionButton>(R.id.floatingActionButton)
 
         tvHelloPlayer.text = getString(R.string.playerName, playerName)
 
         button.setOnClickListener {
             diceOne.setImageResource(listDices.random())
             diceTwo.setImageResource(listDices.random())
+        }
+        shareButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                putExtra(Intent.EXTRA_TEXT, "VOCÊ É SORTUDO!")
+                setPackage("com.whatsapp")
+                type = "text/plain"
+            }
+            if (intent.resolveActivity(this.packageManager) != null)
+                startActivity(intent)
+            else {
+                //Intent com os parametros da loja
+                Toast.makeText(this, "Impossível executar", Toast.LENGTH_LONG).show()
+            }
         }
     }
 

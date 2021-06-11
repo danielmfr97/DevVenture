@@ -1,10 +1,13 @@
 package com.devventure.dicegame
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.res.TypedArrayUtils.getString
 
 private const val TAG = "MeuCicloVida"
 class MainActivity : AppCompatActivity() {
@@ -13,6 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.i(TAG, "OnCreate")
+        Log.i(TAG, "${intent.getStringExtra("playerName")}")
+
+        val playerName = intent.getStringExtra("playerName")
 
         val listDices = listOf(R.drawable.dice_1, R.drawable.dice_2, R.drawable.dice_3,
             R.drawable.dice_4, R.drawable.dice_5, R.drawable.dice_6)
@@ -20,11 +26,18 @@ class MainActivity : AppCompatActivity() {
         val diceOne = findViewById<ImageView>(R.id.ivDiceOne)
         val diceTwo = findViewById<ImageView>(R.id.ivDiceTwo)
         val button = findViewById<Button>(R.id.button)
+        val tvHelloPlayer = findViewById<TextView>(R.id.textView)
+
+        tvHelloPlayer.text = getString(R.string.playerName, playerName)
 
         button.setOnClickListener {
             diceOne.setImageResource(listDices.random())
             diceTwo.setImageResource(listDices.random())
         }
+    }
+
+    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
+        super.startActivityForResult(intent, requestCode)
     }
 
     override fun onStart() {

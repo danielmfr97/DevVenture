@@ -25,17 +25,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivDiceOne"
         app:layout_constraintTop_toTopOf="@+id/ivDiceOne"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/dice_2" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="0dp"
-        android:backgroundTint="@color/green_red_color_state"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/green_red_color_state"
         android:text="@string/jogar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="158dp"
+        android:textSize="20sp"
+        android:text="@string/playerName"
+        tools:text="Seu nome aqui"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivDiceOne" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

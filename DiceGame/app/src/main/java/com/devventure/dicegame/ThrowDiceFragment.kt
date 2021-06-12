@@ -2,17 +2,12 @@ package com.devventure.dicegame
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import com.devventure.dicegame.databinding.FragmentThrowDiceBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class ThrowDiceFragment : Fragment() {
     private var _binding: FragmentThrowDiceBinding? = null
@@ -39,7 +34,7 @@ class ThrowDiceFragment : Fragment() {
         val shareButton = binding.floatingActionButton
         //TODO: Recuperar informação da fragment RegisterUserFragment
         val playerName = "teste"
-        tvHelloPlayer.text = getString(R.string.playerName, playerName)
+        tvHelloPlayer.text = getString(R.string.playerName, arguments?.getString("playerName").toString())
 
         button.setOnClickListener {
             diceOne.setImageResource(listDices.random())

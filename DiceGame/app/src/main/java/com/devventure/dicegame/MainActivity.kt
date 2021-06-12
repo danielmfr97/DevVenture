@@ -18,10 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Log.i(TAG, "OnCreate")
-        Log.i(TAG, "${intent.getStringExtra("playerName")}")
 
         val playerName = intent.getStringExtra("playerName")
-
         val listDices = listOf(
             R.drawable.dice_1, R.drawable.dice_2, R.drawable.dice_3,
             R.drawable.dice_4, R.drawable.dice_5, R.drawable.dice_6

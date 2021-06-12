@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/registerUserFragment">
+
+    <fragment
+        android:id="@+id/registerUserFragment"
+        android:name="com.devventure.dicegame.RegisterUserFragment"
+        android:label="RegisterUserFragment" />
+    <fragment
+        android:id="@+id/throwDiceFragment"
+        android:name="com.devventure.dicegame.ThrowDiceFragment"
+        android:label="ThrowDiceFragment" />
+</navigation>

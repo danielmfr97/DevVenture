@@ -1,14 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalculatorFragment">
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/llValues"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:weightSum="3"
+        app:layout_constraintBottom_toTopOf="@id/tableMathComponents"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvCount"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:height="0dp"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:height="0dp"
+            android:ems="10" />
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tableMathComponents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llValues">
+
+        <TableRow style="@style/table_row_settings">
+
+            <Button
+                android:id="@+id/btnClear"
+                style="@style/button_math_components"
+                android:text="@string/clear" />
+
+            <Button
+                android:id="@+id/btnPercentage"
+                style="@style/button_math_components"
+                android:text="@string/percentage" />
+
+            <ImageButton
+                android:id="@+id/btnBackspace"
+                style="@style/button_math_components"
+                android:src="@drawable/ic_backspace_24" />
+
+            <Button
+                android:id="@+id/btnDivide"
+                style="@style/button_math_components"
+                android:text="@string/divide" />
+        </TableRow>
+
+        <TableRow style="@style/table_row_settings">
+
+            <Button
+                android:id="@+id/btnSeven"
+                style="@style/button_math_components"
+                android:text="@string/seven" />
+
+            <Button
+                android:id="@+id/btnEight"
+                style="@style/button_math_components"
+                android:text="@string/eight" />
+
+            <Button
+                android:id="@+id/btnNine"
+                style="@style/button_math_components"
+                android:text="@string/nine" />
+
+            <Button
+                android:id="@+id/btnMultiply"
+                style="@style/button_math_components"
+                android:text="@string/multiply" />
+        </TableRow>
+
+        <TableRow style="@style/table_row_settings">
+
+            <Button
+                android:id="@+id/btnFour"
+                style="@style/button_math_components"
+                android:text="@string/four" />
+
+            <Button
+                android:id="@+id/btnFive"
+                style="@style/button_math_components"
+                android:text="@string/five" />
+
+            <Button
+                android:id="@+id/btnSix"
+                style="@style/button_math_components"
+                android:text="@string/six" />
+
+            <Button
+                android:id="@+id/btnSubtract"
+                style="@style/button_math_components"
+                android:text="@string/subtract" />
+        </TableRow>
+
+        <TableRow style="@style/table_row_settings">
+
+            <Button
+                android:id="@+id/btnOne"
+                style="@style/button_math_components"
+                android:text="@string/one" />
+
+            <Button
+                android:id="@+id/btnTwo"
+                style="@style/button_math_components"
+                android:text="@string/two" />
+
+            <Button
+                android:id="@+id/btnThree"
+                style="@style/button_math_components"
+                android:text="@string/three" />
+
+            <Button
+                android:id="@+id/btnAdd"
+                style="@style/button_math_components"
+                android:text="@string/add" />
+        </TableRow>
+
+        <TableRow style="@style/table_row_settings">
+
+            <Button
+                android:id="@+id/btnDoubleZero"
+                style="@style/button_math_components"
+                android:text="@string/doubleZero" />
+
+            <Button
+                android:id="@+id/btnZero"
+                style="@style/button_math_components"
+                android:text="@string/zero" />
+
+            <Button
+                android:id="@+id/btnPoint"
+                style="@style/button_math_components"
+                android:text="@string/point" />
+
+            <Button
+                android:id="@+id/btnEquals"
+                style="@style/button_math_components"
+                android:text="@string/equals" />
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

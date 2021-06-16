@@ -1,165 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="6dp"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/llValues"
+    <TextView
+        android:id="@+id/tv_result"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:weightSum="3"
-        app:layout_constraintBottom_toTopOf="@id/tableMathComponents"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="60dp"
+        android:background="@color/primaryColor"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:hint="5 * 5 = 25"
+        android:layout_marginBottom="6dp"
+        android:textAlignment="center"/>
 
-        <TextView
-            android:id="@+id/tvCount"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:height="0dp"
-            android:ems="10" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:baselineAligned="false">
 
-        <TextView
-            android:id="@+id/tvResult"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:height="0dp"
-            android:ems="10" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/tableMathComponents"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_margin="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llValues">
-
-        <LinearLayout style="@style/table_row_settings">
+            android:orientation="vertical">
 
             <Button
-                android:id="@+id/btnClear"
+                android:id="@+id/btn1"
                 style="@style/button_math_components"
-                android:text="@string/clear" />
+                android:text="@string/add" />
 
             <Button
-                android:id="@+id/btnPercentage"
+                android:id="@+id/btn4"
                 style="@style/button_math_components"
-                android:text="@string/percentage" />
-
-            <ImageButton
-                android:id="@+id/btnBackspace"
-                style="@style/button_math_components"
-                android:src="@drawable/ic_backspace_24" />
+                android:text="@string/seven"/>
 
             <Button
-                android:id="@+id/btnDivide"
-                style="@style/button_math_components"
-                android:text="@string/divide" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/table_row_settings">
-
-            <Button
-                android:id="@+id/btnSeven"
-                style="@style/button_math_components"
-                android:text="@string/seven" />
-
-            <Button
-                android:id="@+id/btnEight"
-                style="@style/button_math_components"
-                android:text="@string/eight" />
-
-            <Button
-                android:id="@+id/btnNine"
-                style="@style/button_math_components"
-                android:text="@string/nine" />
-
-            <Button
-                android:id="@+id/btnMultiply"
-                style="@style/button_math_components"
-                android:text="@string/multiply" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/table_row_settings">
-
-            <Button
-                android:id="@+id/btnFour"
+                android:id="@+id/btn7"
                 style="@style/button_math_components"
                 android:text="@string/four" />
 
             <Button
-                android:id="@+id/btnFive"
+                android:id="@+id/btn_ponto"
+                style="@style/button_math_components"
+                android:text="@string/one"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn2"
+                style="@style/button_math_components"
+                android:text="@string/subtract"/>
+
+            <Button
+                android:id="@+id/btn5"
+                style="@style/button_math_components"
+                android:text="@string/eight"/>
+
+            <Button
+                android:id="@+id/btn8"
                 style="@style/button_math_components"
                 android:text="@string/five" />
 
             <Button
-                android:id="@+id/btnSix"
+                android:id="@+id/btn0"
+                style="@style/button_math_components"
+                android:text="@string/two"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn3"
+                style="@style/button_math_components"
+                android:text="@string/multiply"/>
+
+            <Button
+                android:id="@+id/btn6"
+                style="@style/button_math_components"
+                android:text="@string/nine" />
+
+            <Button
+                android:id="@+id/btn9"
                 style="@style/button_math_components"
                 android:text="@string/six" />
 
             <Button
-                android:id="@+id/btnSubtract"
+                android:id="@+id/btn_div"
                 style="@style/button_math_components"
-                android:text="@string/subtract" />
+                android:text="@string/three"/>
         </LinearLayout>
 
-        <LinearLayout style="@style/table_row_settings">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <Button
-                android:id="@+id/btnOne"
+                android:id="@+id/btn_mais"
                 style="@style/button_math_components"
-                android:text="@string/one" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:text="@string/divide"/>
 
             <Button
-                android:id="@+id/btnTwo"
+                android:id="@+id/btn_menos"
                 style="@style/button_math_components"
-                android:text="@string/two" />
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:text="@string/equals"/>
 
-            <Button
-                android:id="@+id/btnThree"
-                style="@style/button_math_components"
-                android:text="@string/three" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnAdd"
-                style="@style/button_math_components"
-                android:text="@string/add" />
+                <Button
+                    android:id="@+id/btn_igual"
+                    style="@style/button_math_components"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/zero" />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout style="@style/table_row_settings">
-
-            <Button
-                android:id="@+id/btnDoubleZero"
-                style="@style/button_math_components"
-                android:text="@string/doubleZero" />
-
-            <Button
-                android:id="@+id/btnZero"
-                style="@style/button_math_components"
-                android:text="@string/zero" />
-
-            <Button
-                android:id="@+id/btnPoint"
-                style="@style/button_math_components"
-                android:text="@string/point" />
-
-            <Button
-                android:id="@+id/btnEquals"
-                style="@style/button_math_components"
-                android:text="@string/equals" />
-        </LinearLayout>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

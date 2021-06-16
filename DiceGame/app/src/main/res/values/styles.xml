@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="game_title">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/croissant_one</item>
+    </style>
+</resources>

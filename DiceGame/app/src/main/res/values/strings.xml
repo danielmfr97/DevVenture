@@ -3,4 +3,7 @@
     <string name="jogar">Jogar</string>
     <string name="iniciar">Iniciar</string>
     <string name="playerName">Olá, %s.</string>
+    <string name="title_game">The Dice Game</string>
+    <string name="informe_nome">Informe seu nome</string>
+    <string name="content_dice_anim">Imagem animada que apresenta os valores dos dados de um a seis</string>
 </resources>

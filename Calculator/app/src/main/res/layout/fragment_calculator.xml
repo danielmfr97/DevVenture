@@ -35,17 +35,18 @@
             android:ems="10" />
     </LinearLayout>
 
-    <TableLayout
+    <LinearLayout
         android:id="@+id/tableMathComponents"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_margin="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llValues">
 
-        <TableRow style="@style/table_row_settings">
+        <LinearLayout style="@style/table_row_settings">
 
             <Button
                 android:id="@+id/btnClear"
@@ -66,9 +67,9 @@
                 android:id="@+id/btnDivide"
                 style="@style/button_math_components"
                 android:text="@string/divide" />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow style="@style/table_row_settings">
+        <LinearLayout style="@style/table_row_settings">
 
             <Button
                 android:id="@+id/btnSeven"
@@ -89,9 +90,9 @@
                 android:id="@+id/btnMultiply"
                 style="@style/button_math_components"
                 android:text="@string/multiply" />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow style="@style/table_row_settings">
+        <LinearLayout style="@style/table_row_settings">
 
             <Button
                 android:id="@+id/btnFour"
@@ -112,9 +113,9 @@
                 android:id="@+id/btnSubtract"
                 style="@style/button_math_components"
                 android:text="@string/subtract" />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow style="@style/table_row_settings">
+        <LinearLayout style="@style/table_row_settings">
 
             <Button
                 android:id="@+id/btnOne"
@@ -135,9 +136,9 @@
                 android:id="@+id/btnAdd"
                 style="@style/button_math_components"
                 android:text="@string/add" />
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow style="@style/table_row_settings">
+        <LinearLayout style="@style/table_row_settings">
 
             <Button
                 android:id="@+id/btnDoubleZero"
@@ -158,7 +159,7 @@
                 android:id="@+id/btnEquals"
                 style="@style/button_math_components"
                 android:text="@string/equals" />
-        </TableRow>
-    </TableLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

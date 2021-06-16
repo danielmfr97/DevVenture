@@ -4,13 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_default"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/box_one_text"
+        style="@style/whiteBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="356dp" />
+        android:text="@string/box_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/box_two_text"
+        style="@style/whiteBox"
+        android:layout_width="@dimen/box_two_width"
+        android:layout_height="@dimen/box_two_height"
+        android:layout_marginTop="12dp"
+        android:text="@string/box_two"
+        app:layout_constraintStart_toStartOf="@id/box_one_text"
+        app:layout_constraintTop_toBottomOf="@id/box_one_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

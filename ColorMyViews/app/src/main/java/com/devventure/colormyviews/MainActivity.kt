@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         requestUserPermissions()
         configureSharedPref()
         configureBoxBackground()
+        configureShareBtn()
     }
 
     private fun requestUserPermissions() {
@@ -71,6 +72,15 @@ class MainActivity : AppCompatActivity() {
         )
         for (box in boxes) {
             findViewById<View>(box.id).setBackgroundResource(getColorBox(box.id.toString()))
+        }
+    }
+
+    private fun configureShareBtn() {
+        binding.floatingActionButton.setOnClickListener {
+            val bitmap = getViewAsBitmap(binding.clBoxes)
+            if (bitmap != null) {
+                saveScreenshot(bitmap, "ScreenshotView")
+            }
         }
     }
 
@@ -118,13 +128,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun getColorBox(idBox: String): Int {
         return sharedPreferences.getInt(idBox, R.color.grey)
-    }
-
-    fun shareScreenScreenshot() {
-        val bitmap = getViewAsBitmap(binding.clBoxes)
-        if (bitmap != null) {
-            saveScreenshot(bitmap, "ScreenshotView")
-        }
     }
 
     /**

@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.devventure.colormyviews.databinding.ActivityMainBinding
 import java.io.File
 import java.io.FileOutputStream
@@ -119,14 +120,18 @@ class MainActivity : AppCompatActivity() {
         return sharedPreferences.getInt(idBox, R.color.grey)
     }
 
-    fun shareScreenScreenshot(view: View) {
-        val rootView = window.decorView.findViewById<View>(android.R.id.content)
-        val bitmap = getViewAsBitmap(rootView)
+    fun shareScreenScreenshot() {
+        val bitmap = getViewAsBitmap(binding.clBoxes)
         if (bitmap != null) {
-            storeScreenshot(bitmap, "ScreenshotView")
+            saveScreenshot(bitmap, "ScreenshotView")
         }
     }
 
+    /**
+     * Função recebe uma view e a converte em bitmap de acordo com suas dimensões.
+     * @param mView view a ser convertida em bitmap
+     * @return View em formato bitmap
+     */
     private fun getViewAsBitmap(mView: View): Bitmap? {
         val bitmap = Bitmap.createBitmap(mView.width, mView.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
@@ -146,10 +151,9 @@ class MainActivity : AppCompatActivity() {
      * @param filename nome do arquivo a ser salvo
      * @return Uri do arquivo salvo
      */
-    private fun storeScreenshot(imageBitmap: Bitmap, filename: String) {
-//        val dirPath = applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-        val dirPath = applicationContext.filesDir.absolutePath
-        val file = File(dirPath, filename)
+    private fun saveScreenshot(imageBitmap: Bitmap, filename: String) {
+        val dirPath = applicationContext.filesDir
+        val file = File(dirPath, "$filename.jpg")
         val fileOutputStream = FileOutputStream(file)
         try {
             imageBitmap.compress(Bitmap.CompressFormat.JPEG, 85, fileOutputStream)
@@ -157,28 +161,31 @@ class MainActivity : AppCompatActivity() {
                 flush()
                 close()
             }
-            shareImageUri(Uri.fromFile(file))
+            val imageUri = FileProvider.getUriForFile(
+                this@MainActivity,
+                "com.devventure.colormyviews.provider",
+                file
+            )
+            shareImageUri(imageUri)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     /**
-     * Shares the PNG image from Uri.
-     * @param uri Uri of image to share.
+     * Compartilhar imagem JPEG a partir de URI
+     * @param uri Uri da imagem a ser compartilhada.
      */
     @SuppressLint("QueryPermissionsNeeded")
     private fun shareImageUri(uri: Uri) {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             putExtra(Intent.EXTRA_STREAM, uri)
-            type = "image/png"
-            setPackage("com.whatsapp")
+            type = "image/*"
         }
 
         applicationContext?.packageManager?.run {
             if (shareIntent.resolveActivity(this) != null)
-                startActivity(shareIntent)
+                startActivity(Intent.createChooser(shareIntent, "Share images to.."))
             else
                 Toast.makeText(applicationContext, "Impossível executar", Toast.LENGTH_LONG).show()
         }

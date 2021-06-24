@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.devventure.whatdidilearn.view.HomeFragment"
+        android:name="com.devventure.whatdidilearn.view.LearnedListFragment"
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_newItemFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/newItemFragment"
-        android:name="com.devventure.whatdidilearn.view.NewItemFragment"
+        android:name="com.devventure.whatdidilearn.view.NewLearnedItemFragment"
         android:label="NewItemFragment" />
 </navigation>

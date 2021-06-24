@@ -17,5 +17,5 @@ interface LearnedItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(learnedItem: LearnedItem)
 
-    
+
 }

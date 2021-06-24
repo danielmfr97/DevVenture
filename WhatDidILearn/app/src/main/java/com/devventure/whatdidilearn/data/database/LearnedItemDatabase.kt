@@ -42,14 +42,14 @@ abstract class LearnedItemDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let {
                 scope.launch {
-                    populateDatabase(it.learnedItemDao())
+//                    populateDatabase(it.learnedItemDao())
                 }
             }
         }
 
         private fun populateDatabase(learnedItemDao: LearnedItemDao) {
             val items = getAll()
-            learnedItemDao.insert(items)
+//            learnedItemDao.insert(items)
         }
 
         fun getAll(): List<LearnedItem> {

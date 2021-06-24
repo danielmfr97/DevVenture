@@ -2,7 +2,7 @@ package com.devventure.whatdidilearn.di
 
 import com.devventure.whatdidilearn.data.LearnedItemRepository
 import com.devventure.whatdidilearn.data.database.LearnedItemDatabase
-import com.devventure.whatdidilearn.viewmodel.HomeViewModel
+import com.devventure.whatdidilearn.viewmodel.LearnedItemViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -23,7 +23,7 @@ object LearnedItemModule {
             get<LearnedItemDatabase>().learnedItemDao()
         }
         viewModel {
-            HomeViewModel(get())
+            LearnedItemViewModel(get())
         }
     }
 }

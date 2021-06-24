@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.devventure.whatdidilearn.data.LearnedItemRepository
 import java.lang.IllegalArgumentException
 
-class HomeViewModelFactory(private val repository: LearnedItemRepository) :
+class LearnedItemViewModelFactory(private val repository: LearnedItemRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java))
-            return HomeViewModel(repository) as T
+        if (modelClass.isAssignableFrom(LearnedItemViewModel::class.java))
+            return LearnedItemViewModel(repository) as T
         throw IllegalArgumentException("Unknown View Model Class")
     }
 }

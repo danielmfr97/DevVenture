@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="description_padding">10sp</dimen>
+    <dimen name="learned_item_padding">25dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+</resources>

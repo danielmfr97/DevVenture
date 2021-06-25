@@ -38,6 +38,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$rootProject.kotlin_version"
     implementation "androidx.appcompat:appcompat:1.2.0"
+    implementation "com.github.bumptech.glide:glide:$rootProject.version_glide"
 
     //Retrofit dependencies
     implementation "com.squareup.retrofit2:retrofit:$rootProject.version_retrofit"

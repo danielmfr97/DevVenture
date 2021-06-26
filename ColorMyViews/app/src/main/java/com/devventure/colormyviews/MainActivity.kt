@@ -13,42 +13,32 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.lifecycle.Observer
 import com.devventure.colormyviews.databinding.ActivityMainBinding
-import com.devventure.colormyviews.viewmodel.BoxesViewModel
 import java.io.File
 import java.io.FileOutputStream
 
+const val COLORS_CONST = "colors"
 
 class MainActivity : AppCompatActivity() {
     private var pincelColor = R.color.grey
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: BoxesViewModel by viewModels()
-    private lateinit var boxes: Array<Int>
+    private lateinit var editor: SharedPreferences.Editor
+    private lateinit var sharedPreferences: SharedPreferences
+    private val boxes =
+        arrayOf(binding.boxOne, binding.boxTwo, binding.boxThree, binding.boxFour, binding.boxFive)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         requestUserPermissions()
-        boxes = arrayOf(
-            binding.boxOne.id, binding.boxTwo.id, binding.boxThree.id,
-            binding.boxFour.id, binding.boxFive.id
-        )
-        subscribeObservers()
+        configureSharedPref()
         configureBoxBackground()
         configureShareBtn()
-    }
-
-    private fun subscribeObservers() {
-        viewModel.mapBoxesColors.observe(this, Observer {
-            boxesColors = it
-        })
     }
 
     private fun requestUserPermissions() {
@@ -73,10 +63,19 @@ class MainActivity : AppCompatActivity() {
             )
     }
 
+    private fun configureSharedPref() {
+        sharedPreferences = getSharedPreferences(COLORS_CONST, Context.MODE_PRIVATE)
+        editor = sharedPreferences.edit()
+    }
+
     private fun configureBoxBackground() {
-        for (box in boxes) {
-            findViewById<View>(box.id).setBackgroundResource(getColorBox(box.id.toString()))
+        boxes.forEach {
+            findViewById<View>(it.id).setBackgroundResource(getColorBox(it.id.toString()))
         }
+    }
+
+    private fun getColorBox(idBox: String): Int {
+        return sharedPreferences.getInt(idBox, R.color.grey)
     }
 
     private fun configureShareBtn() {
@@ -87,19 +86,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onStop() {
-        super.onStop()
-        val boxesColors = hashMapOf<Int, Int>()
-        boxes.forEach {
-        }
-        viewModel.mapBoxesColors?.value?.clear()
-        boxes.forEach {
-            viewModel.mapBoxesColors.value =
-        }
-    }
-
-    private fun getBoxsColors
 
     fun setColor(view: View) {
         when (view.id) {
@@ -138,10 +124,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getColorBox(idBox: String): Int {
-        return sharedPreferences.getInt(idBox, R.color.grey)
-    }
-
     /**
      * Função recebe uma view e a converte em bitmap de acordo com suas dimensões.
      * @param mView view a ser convertida em bitmap
@@ -160,7 +142,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Função salva o Bitmap gerado da view como um file em um diretório privado, utilizando getExternalFilesDir(),
+     * Função salva o Bitmap gerado da view como um file em um diretório privado, utilizando getFilesDir(),
      * portanto os arquivos serão removidos quando o app for desinstalado
      * @param imageBitmap imagem em bitmap a ser salva
      * @param filename nome do arquivo a ser salvo
@@ -204,5 +186,10 @@ class MainActivity : AppCompatActivity() {
             else
                 Toast.makeText(applicationContext, "Impossível executar", Toast.LENGTH_LONG).show()
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        editor.apply()
     }
 }

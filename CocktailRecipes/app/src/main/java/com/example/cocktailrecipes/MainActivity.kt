@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.example.cocktailrecipes.data.DrinkListRemoteEntity
+import com.example.cocktailrecipes.data.model.DrinkList
 import com.example.cocktailrecipes.network.CocktailService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun requestCocktails(): DrinkListRemoteEntity {
+    private suspend fun requestCocktails(): DrinkList {
         return withContext(Dispatchers.IO) {
             CocktailService.service.getCocktail()
         }

@@ -1,4 +1,4 @@
-package com.example.cocktailrecipes.network
+package com.example.cocktailrecipes.data.network
 
 import com.example.cocktailrecipes.data.model.DrinkList
 import retrofit2.Response

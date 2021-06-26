@@ -6,54 +6,49 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide
+import com.example.cocktailrecipes.data.db.DrinkDao
+import com.example.cocktailrecipes.data.model.Drink
 import com.example.cocktailrecipes.data.model.DrinkList
-import com.example.cocktailrecipes.network.CocktailService
+import com.example.cocktailrecipes.data.network.CocktailService
+import com.example.cocktailrecipes.data.repository.DrinkRepository
+import com.example.cocktailrecipes.databinding.ActivityMainBinding
+import com.example.cocktailrecipes.presentation.DrinkViewModel
+import com.example.cocktailrecipes.presentation.adapters.DrinkAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
+import androidx.lifecycle.Observer
 
 class MainActivity : AppCompatActivity() {
-    lateinit var drinkName: TextView
-    lateinit var drinkContainer: ConstraintLayout
-    lateinit var drinkImage: ImageView
+    private var _binding: ActivityMainBinding? = null
+    private val binding: ActivityMainBinding
+        get() = _binding!!
+
+    private val viewModel: DrinkViewModel by viewModel()
+    private lateinit var mAdapter: DrinkAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        drinkName = findViewById(R.id.drinkName)
-        drinkContainer = findViewById(R.id.drinkContainer)
-        drinkImage = findViewById(R.id.drinkImage)
-
-        getDrink()
-
-        drinkContainer.setOnClickListener {
-            getDrink()
-        }
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        subscribeObservers()
+        initRecyclerView()
     }
 
-    private fun getDrink() {
-        lifecycleScope.launch {
-            try {
-                // 1.Executa requisicao
-                val response = requestCocktails().drinks
-                // 2. A partir de uma resposta escolher um drink aleatorio
-                val drink = response.random()
-                // 3. Colocar o nome do drink aleatório escolhido no textview
-                drinkName.text = drink.strDrink
-                // 4. Carregar imagem usando glide
-                Glide.with(this@MainActivity).load(drink.strDrinkThumb).into(drinkImage)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+    private fun subscribeObservers() {
+        viewModel.getDrinks().observe(this@MainActivity, Observer {
+            mAdapter.drinkList = it
+        })
     }
 
-    private suspend fun requestCocktails(): DrinkList {
-        return withContext(Dispatchers.IO) {
-            CocktailService.service.getCocktail()
+    private fun initRecyclerView() {
+        mAdapter = DrinkAdapter()
+        binding.rvDrinks.apply {
+            adapter = mAdapter
         }
     }
 }

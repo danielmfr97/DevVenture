@@ -2,7 +2,7 @@ package com.devventure.whatdidilearn.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ class LearnedListFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: LearnedItemViewModel by sharedViewModel()
+    private val viewModel: LearnedItemViewModel by viewModel()
     lateinit var mAdapter: LearnedItemAdapter
 
     override fun onCreateView(

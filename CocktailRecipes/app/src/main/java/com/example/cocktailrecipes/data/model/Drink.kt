@@ -1,8 +1,10 @@
-package com.example.cocktailrecipes.data
+package com.example.cocktailrecipes.data.model
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
-data class DrinkRemoteEntity(
+@Entity(tableName = "drinks_entity")
+data class Drink(
     @SerializedName("idDrink")
     val id: String,
     val strDrink: String,
